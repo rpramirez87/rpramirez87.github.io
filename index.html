@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patrick Ramirez — iOS Engineering Lead</title>
+<meta name="description" content="Patrick Ramirez — Senior iOS Engineer and Technical Lead. Swift, SwiftUI, enterprise mobile, AI integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1F3864;
+    --navy-soft: #2c4a7c;
+    --ink: #1b1f27;
+    --muted: #5b6474;
+    --line: #e3e7ee;
+    --bg: #ffffff;
+    --card: #f6f8fb;
+    --accent: #2f6fed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --navy: #8fb0ea;
+      --navy-soft: #a9c2ef;
+      --ink: #e7eaf0;
+      --muted: #9aa3b2;
+      --line: #2a303b;
+      --bg: #0f1218;
+      --card: #171b23;
+      --accent: #7aa5ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav .brand { font-weight: 700; color: var(--navy); }
+  nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  @media (max-width: 560px) { nav ul li.opt { display: none; } }
+
+  header.hero { padding: 72px 0 48px; border-bottom: 1px solid var(--line); }
+  .hero h1 { font-size: clamp(32px, 6vw, 46px); line-height: 1.1; margin: 0 0 10px; color: var(--navy); letter-spacing: -0.02em; }
+  .hero .title { font-size: 18px; font-weight: 600; margin: 0 0 18px; }
+  .hero p.lede { font-size: 17px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px;
+    border: 1px solid var(--navy); color: var(--navy);
+  }
+  .btn.primary { background: var(--navy); color: var(--bg); }
+  .btn:hover { text-decoration: none; opacity: .88; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .stat .n { font-size: 26px; font-weight: 700; color: var(--navy); }
+  .stat .l { font-size: 13px; color: var(--muted); }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  section { padding: 56px 0 8px; }
+  h2 {
+    font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy);
+    margin: 0 0 24px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+
+  .case {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 24px; margin-bottom: 20px;
+  }
+  .case .meta { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  .case h3 { margin: 0 0 12px; font-size: 20px; }
+  .result {
+    display: inline-block; font-weight: 600; font-size: 14px; color: var(--navy);
+    background: color-mix(in srgb, var(--navy) 10%, transparent);
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .case dl { margin: 0; display: grid; grid-template-columns: 110px 1fr; gap: 6px 16px; }
+  .case dt { font-weight: 600; font-size: 14px; color: var(--muted); }
+  .case dd { margin: 0; }
+  @media (max-width: 560px) { .case dl { grid-template-columns: 1fr; } .case dd { margin-bottom: 8px; } }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-size: 12px; padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line); color: var(--muted); }
+
+  .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 640px) { .apps { grid-template-columns: 1fr; } }
+  .app { border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; }
+  .app h3 { margin: 0 0 4px; font-size: 18px; }
+  .app .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .app p { margin: 0 0 14px; flex: 1; }
+
+  .skills { display: grid; grid-template-columns: 200px 1fr; gap: 10px 20px; }
+  .skills dt { font-weight: 600; }
+  .skills dd { margin: 0; color: var(--muted); }
+  @media (max-width: 560px) { .skills { grid-template-columns: 1fr; } .skills dd { margin-bottom: 10px; } }
+
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .timeline .role { font-weight: 600; }
+  .timeline .co { color: var(--muted); font-size: 14px; }
+  .timeline .dates { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  @media (max-width: 560px) { .timeline li { flex-direction: column; gap: 2px; } }
+
+  footer { padding: 56px 0 64px; text-align: center; }
+  footer h2 { border: 0; text-align: center; }
+  footer p { color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: -8px; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Patrick Ramirez</span>
+    <ul>
+      <li><a href="#work">Case Studies</a></li>
+      <li class="opt"><a href="#apps">Apps</a></li>
+      <li class="opt"><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Patrick Ramirez</h1>
+    <p class="title">Senior iOS Engineer &amp; Technical Lead · Enterprise Mobile · Swift, SwiftUI</p>
+    <p class="lede">I've spent 9+ years building performant Swift and SwiftUI apps for consumer and enterprise platforms. Most recently I led iOS architecture for field-operations apps used across 500 properties, including an AI-powered inspection integration, offline-first data capture, and CI quality automation.</p>
+    <div class="btns">
+      <a class="btn primary" href="resume.pdf">Download Résumé</a>
+      <a class="btn" href="https://github.com/rpramirez87">GitHub</a>
+      <a class="btn" href="mailto:patrickramirez5087@gmail.com">Email Me</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">9+</div><div class="l">years in iOS</div></div>
+      <div class="stat"><div class="n">500</div><div class="l">properties on apps I led</div></div>
+      <div class="stat"><div class="n">15+</div><div class="l">client apps delivered</div></div>
+      <div class="stat"><div class="n">10K+</div><div class="l">enterprise users (Daimler)</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="work">
+    <h2>Case Studies</h2>
+    <p class="note">Most of my work is on internal enterprise apps, so these describe the problem, my decisions, and the outcome without proprietary code or screenshots.</p>
+
+    <article class="case">
+      <div class="meta">Sun Communities &amp; Sun Outdoors · Senior iOS Developer (iOS Lead)</div>
+      <h3>NavigateAI: AI-Automated Property Inspections</h3>
+      <span class="result">Inspections cut from 15–20 min to 5–7 min across 500 properties</span>
+      <dl>
+        <dt>Problem</dt>
+        <dd>On-site staff spent 15–20 minutes per inspection taking and manually uploading photos, then filling report fields by hand.</dd>
+        <dt>My role</dt>
+        <dd>Led the integration with a third-party AI vendor and defined the iOS architecture end to end.</dd>
+        <dt>Approach</dt>
+        <dd>Staff now record a single video walkthrough. The vendor's AI performs photo-based damage detection and auto-fills report fields, and results flow back to the app through a webhook-based data sync I designed.</dd>
+        <dt>Outcome</dt>
+        <dd>Average inspection time dropped to 5–7 minutes, rolled out across 500 properties.</dd>
+      </dl>
+      <div class="tags"><span class="tag">AI integration</span><span class="tag">Webhooks</span><span class="tag">Vendor management</span><span class="tag">Swift</span></div>
+    </article>
+
+    <article class="case">
+      <div class="meta">Sun Communities &amp; Sun Outdoors</div>
+      <h3>Offline-First Inspection Reports</h3>
+      <span class="result">Lost reports reduced from 5% to zero</span>
+      <dl>
+        <dt>Problem</dt>
+        <dd>Many properties have poor cellular coverage, and about 5% of inspection reports were being lost when connectivity dropped mid-submission.</dd>
+        <dt>Approach</dt>
+        <dd>Engineered local offline support so staff can complete and save full reports on device, with data syncing once a connection is available.</dd>
+        <dt>Outcome</dt>
+        <dd>Lost reports went from 5% to zero, and staff no longer have to redo inspections.</dd>
+      </dl>
+      <div class="tags"><span class="tag">Offline-first</span><span class="tag">Data persistence</span><span class="tag">Field operations</span></div>
+    </article>
+
+    <article class="case">
+      <div class="meta">Sun Communities &amp; Sun Outdoors</div>
+      <h3>iOS Architecture &amp; Vendor Team Leadership</h3>
+      <span class="result">10+ major features shipped with rotating vendor teams over 3+ years</span>
+      <dl>
+        <dt>Context</dt>
+        <dd>A small in-house team worked alongside third-party vendor teams that rotated in every 3–6 months.</dd>
+        <dt>Approach</dt>
+        <dd>Owned the iOS architecture (MVVM, Clean Architecture, modular Swift Package Manager packages) so new teams could onboard quickly and work in isolated modules. Established CI/PR quality standards on Azure DevOps with Fastlane, Danger Swift, and SwiftLint to keep quality consistent across teams.</dd>
+        <dt>Outcome</dt>
+        <dd>Shipped 10+ major features over 3+ years while keeping the codebase consistent as teams changed.</dd>
+      </dl>
+      <div class="tags"><span class="tag">MVVM</span><span class="tag">Clean Architecture</span><span class="tag">SPM modules</span><span class="tag">Azure DevOps</span><span class="tag">Fastlane</span><span class="tag">Danger Swift</span><span class="tag">SwiftLint</span></div>
+    </article>
+
+    <article class="case">
+      <div class="meta">CVS Health · Senior iOS Engineer (Contract)</div>
+      <h3>CVS Pharmacy: SwiftUI Migration</h3>
+      <span class="result">40% of the app (30+ screens) migrated, 90 seconds off launch time</span>
+      <dl>
+        <dt>Context</dt>
+        <dd>The CVS Pharmacy app serves millions of customers across mobile payments, ExtraCare offers, prescriptions, and Curbside Pickup.</dd>
+        <dt>Approach</dt>
+        <dd>Drove the migration of 30+ screens from UIKit to SwiftUI, and partnered with the architecture team on a VIPER to Clean Architecture migration to improve testability. Championed accessibility, profiled performance with Instruments, and mentored junior engineers.</dd>
+        <dt>Outcome</dt>
+        <dd>40% of the app converted to SwiftUI, with launch time cut by 90 seconds.</dd>
+      </dl>
+      <div class="tags"><span class="tag">SwiftUI</span><span class="tag">UIKit</span><span class="tag">VIPER</span><span class="tag">Clean Architecture</span><span class="tag">Accessibility</span><span class="tag">Instruments</span></div>
+    </article>
+
+    <article class="case">
+      <div class="meta">Daimler Trucks North America · Mobile Developer (Contract)</div>
+      <h3>Express Writeup: VIN Scanner for Service Writers</h3>
+      <span class="result">~10 minutes saved per unit, 900+ dealerships, 10,000+ users</span>
+      <dl>
+        <dt>Context</dt>
+        <dd>Express Writeup is an enterprise app for service writers, dealers, and dealer management system users.</dd>
+        <dt>Approach</dt>
+        <dd>Designed the end-to-end architecture across iOS and Android (Xamarin), and built a VIN scanner using OCR and Bluetooth to replace manual entry.</dd>
+        <dt>Outcome</dt>
+        <dd>Write-up time cut by about 10 minutes per unit, rolled out to 900+ dealerships and 10,000+ users.</dd>
+      </dl>
+      <div class="tags"><span class="tag">OCR</span><span class="tag">Bluetooth</span><span class="tag">Xamarin</span><span class="tag">Enterprise</span></div>
+    </article>
+  </section>
+
+  <section id="apps">
+    <h2>Apps on the App Store</h2>
+    <div class="apps">
+      <div class="app">
+        <h3>Riley: Child Development Coach</h3>
+        <div class="meta">Freelance · Sole mobile engineer · 4.5★ on the App Store</div>
+        <p>A child-development coach and baby tracker for parents, with milestone roadmaps, sleep and feeding tracking, and caregiver sharing. Built in Swift and SwiftUI with Supabase real-time sync and New Relic monitoring.</p>
+        <a href="https://apps.apple.com/us/app/riley-child-development-coach/id6738063220">View on the App Store →</a>
+      </div>
+      <div class="app">
+        <h3>Get Like Me</h3>
+        <div class="meta">Upwork client project · iPhone &amp; iPad</div>
+        <p>An entertainment app where users pick a customizable avatar that mirrors their movements on camera, then record, trim, and share the video. Shipped with native iPad support and in-app subscriptions.</p>
+        <a href="https://apps.apple.com/us/app/get-like-me/id1533095423">View on the App Store →</a>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">As a freelancer on Upwork I delivered 15+ iOS apps and held Top Rated Plus status (top 3% of freelancers) with a 100% job success rate. <a href="https://www.upwork.com/freelancers/~013a141815da3b2d10">See my Upwork profile →</a></p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Languages &amp; Frameworks</dt><dd>Swift, SwiftUI, UIKit, Objective-C, iOS SDK, Swift Concurrency</dd>
+      <dt>Architecture &amp; Testing</dt><dd>VIPER, MVVM, Clean Architecture, unit testing and TDD, XCTest, Instruments</dd>
+      <dt>APIs &amp; Data</dt><dd>RESTful APIs, webhooks, Firebase, Core Data, Realm, Swift Package Manager, CocoaPods</dd>
+      <dt>Delivery &amp; Quality</dt><dd>App Store publishing, CI/CD, Azure DevOps, GitHub Actions, Fastlane, Danger Swift, SwiftLint</dd>
+      <dt>User Experience</dt><dd>Accessibility and localization, multi-user account systems, Agile/Scrum, mentoring</dd>
+      <dt>AI-Assisted Development</dt><dd>GitHub Copilot, Claude Code</dd>
+    </dl>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li><div><div class="role">Senior iOS Developer (iOS Lead)</div><div class="co">Sun Communities &amp; Sun Outdoors · Remote</div></div><div class="dates">Nov 2022 – Oct 2026</div></li>
+      <li><div><div class="role">Senior iOS Engineer (Contract)</div><div class="co">CVS Health · Florham Park, NJ</div></div><div class="dates">Apr 2021 – May 2022</div></li>
+      <li><div><div class="role">iOS Engineer</div><div class="co">Upwork (Freelance) · Remote</div></div><div class="dates">Mar 2020 – May 2021</div></li>
+      <li><div><div class="role">Mobile Developer (Contract)</div><div class="co">Daimler Trucks North America · Portland, OR</div></div><div class="dates">Aug 2017 – Mar 2020</div></li>
+    </ul>
+    <p class="note" style="margin-top:16px">B.S., University of Houston</p>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Get in Touch</h2>
+    <p>Open to senior iOS and mobile lead roles, remote or in the New York City metropolitan area.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn primary" href="mailto:patrickramirez5087@gmail.com">patrickramirez5087@gmail.com</a>
+      <a class="btn" href="https://github.com/rpramirez87">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
